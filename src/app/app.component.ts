@@ -8,6 +8,8 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   @ViewChild('f') signupForm: NgForm;
+  @ViewChild('f2') formTwo: NgForm;
+
   defaultQuestion = 'pet';
   answer = '';
   gender = ['male', 'female'];
@@ -19,6 +21,9 @@ export class AppComponent {
     gender: ''
   };
   submitted = false;
+
+  subscriptions = ['Basic', 'Advanced', 'Pro'];
+  defaultSubscription = 'Advanced';
 
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -53,5 +58,9 @@ export class AppComponent {
     this.user.gender = this.signupForm.value.gender;
 
     this.signupForm.reset();
+  }
+
+  onSubmitFormTwo() {
+    console.log(this.formTwo);
   }
 }

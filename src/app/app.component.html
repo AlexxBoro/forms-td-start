@@ -85,11 +85,47 @@
 <br>
 <br>
 
-<p>template-driven form assignment</p>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-
+      <p>template-driven form assignment</p>
+      <form (ngSubmit)="onSubmitFormTwo()" #f2="ngForm">
+        <label for="email">Your email:</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          ngModel
+          required
+          email
+          #email="ngModel">
+        <p *ngIf="!email.valid && email.touched" class="alert alert-danger">this is not a valid e-mail address</p>
+        <label for="subscription">Choose your subscription:</label>
+        <select
+          id="subscription"
+          name="subscription"
+          class="form-control"
+          [ngModel]="defaultSubscription"
+          >
+          <option *ngFor="let subscription of subscriptions" [value]="subscription">{{ subscription }}</option>
+        </select>
+        <label for="password">Your password:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          ngModel
+          required
+          #password="ngModel">
+          <p *ngIf="!password.valid && password.touched" class="alert alert-danger">enter a password!</p>
+        <p *ngIf="!f2.valid && f2.touched">THE FORM IS INVALID!!</p>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>
+
+<br>
